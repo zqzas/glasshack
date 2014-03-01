@@ -98,6 +98,6 @@ class Application(object):
 
     def run(self, **kwargs):
         self.prepare(**kwargs)
-        self.web.run(port=self.port, host=("0.0.0.0" if self.public else "127.0.0.1"))
+        self.web.run(port=self.port, host='0.0.0.0')
 
 
