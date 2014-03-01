@@ -1,22 +1,26 @@
 import thread
 from flask import request
+import app
 
-class Tunnel(object):
-    def __init__(self, app):
-        self.app = app
+tl_ids = []
 
-    @self.app.web.route('/tunnel')
-    def send(self):
-        img = request.args.get('img')
-        thread.start_new_thread(self.callback, (img, ))
-        return None
+def get_image(tl):
+     #r = self.user.request("GET", "/mirror/v1/timeline/", data = {})
+     print tl
 
-    def callback(self, img):
-        pass
+@app.app.subscriptions.action('SHARE')
+def share(user):
+    for tl in user.timeline.list():
+        if not tl['id'] in tl_ids:
+            tl_ids.append(tl)
+            img = get_image(tl['id'])
+            #thread.start_new_thread(process, (img, ))
+
+def display_card():
+    pass
+
+def process(img):
+    display_card()
 
 if __name__ == '__main__':
-    t = Tunnel(None)
-    t.send()
-    print '1'
-    while True:
-        pass
+    pass
