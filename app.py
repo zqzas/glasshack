@@ -7,6 +7,8 @@ import glass
 # Config imports
 import config
 
+import tunnel
+
 app = glass.Application(
     client_id=config.GOOGLE_CLIENT_ID,
     client_secret=config.GOOGLE_CLIENT_SECRET,
