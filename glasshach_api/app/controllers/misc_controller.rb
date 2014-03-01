@@ -3,7 +3,9 @@ def facematch
     face_set = Facepp.call(
         { :url => params[ :photo ] } ,
         "/detection/detect" , false ) [ "face" ]
-    image = MiniMagick::Image.open(params[ :photo ])
+    # puts params[ :photo ]
+    # image = MiniMagick::Image.open(params[ :photo ])
+    # puts "IM HERE"
     
     @result_set = []
 
@@ -13,6 +15,8 @@ def facematch
       faceImage = MiniMagick::Image.open(params[ :photo ])
       puts faceImage[:width]
       puts faceImage[:height]
+      position["width"] = position["width"] * 1.2
+      position["height"] = position["height"] * 1.2
       width = (position["width"] * faceImage[:width] / 100).to_i
       height = (position["height"] * faceImage[:height] / 100).to_i
       x = (position["center"]["x"] * faceImage[:width] / 100).to_i - width / 2
