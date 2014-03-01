@@ -1,6 +1,7 @@
 import thread
 from flask import request
 import app
+import urllib2
 
 tl_ids = []
 
@@ -15,7 +16,9 @@ def share(user):
             #thread.start_new_thread(process, (tl['contentUrl'])
 
 def process(url):
-    pass
+    api = 'http://192.168.2.169:3000/misc/facematch'
+    result = urllib2.urlopen(api + '?photo=' + url).read()
 
 if __name__ == '__main__':
-    pass
+    url = 'http://hooin.qiniudn.com/IMG_1497.JPG'
+    process(url)
