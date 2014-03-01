@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140301104249) do
+ActiveRecord::Schema.define(:version => 20140301154100) do
 
   create_table "users", :force => true do |t|
     t.string   "fname"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20140301104249) do
     t.string   "from"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "avatar_url"
   end
 
   add_index "users", ["face_id"], :name => "index_users_on_face_id"

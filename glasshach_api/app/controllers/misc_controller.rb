@@ -43,17 +43,22 @@ def facematch
   end
   
   def facecreate
+    image_file_name = params[ :fname ] + params[ :lname ]
+    File.open( "./public/image/#{ image_file_name }.jpg" , "wb") { |f| f.write(params[ :photo ].read) }
+
     face_id = Facepp.call( 
-        { :img => Faraday::UploadIO.new( params[ :photo ] , "image/jpeg" ) } ,
+        { :img => Faraday::UploadIO.new( "./public/image/#{ image_file_name }.jpg" , "image/jpeg" ) } ,
         "/detection/detect" , true ) [ "face" ] [ 0 ] [ "face_id" ]
-    User.create( 
+
+    user = User.create( 
         :lname => params[ :lname ] , 
         :fname => params[ :fname ] ,
         :age => params[ :age ].to_i ,
         :gender => params[ :gender ] ,
         :email => params[ :email ] ,
         :face_id => face_id ,
-        :from => params[ :from ]
+        :from => params[ :from ] ,
+        :avatar_url => "/image/#{ image_file_name }.jpg"
       )
     res = Facepp.call( 
         { :face_id => face_id , :faceset_name => "hackathon2014" } ,
@@ -62,7 +67,7 @@ def facematch
       Facepp.call( { :faceset_name => "hackathon2014" } , "/train/search" , false )
     end
 
-    render :text => "FUCKXXX"
+    redirect_to( "/accounts/show?id=#{ user.id }" )
   end
 
   def test_upload

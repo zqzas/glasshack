@@ -8,9 +8,12 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require flat-ui
  */
 
-$main_color = #009999;
+$main_color: #118888;
+$google_color: #6199DF;
+$green_color: #1abc9c;
 
 body {
 	margin: 0;
@@ -19,9 +22,155 @@ body {
 	color: #333333;
 }
 
+p {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+table {
+	width: 100%;
+
+	tr {
+		width: 100%;
+	}
+}
+
+li {list-style-type: none;}
+
 #header {
 	width: 100%;
 	height: 50px;
 	display: block;
-	background-color: #009999;
+	background-color: $main_color;
+
+	#header_container {
+		width: 1140px;
+		height: 40px;
+		margin: 0 auto;
+		padding: 5px;
+
+		#logo {
+			color: white;
+			font-size: 30px;
+			font-weight: 800;
+			float: left;
+		}
+
+		#contact_us {
+			padding-top: 15px;
+			color: white;
+			font-size: 12px;
+			float: right;
+
+			&:hover { color: #aaa; }
+		}
+	}
+}
+
+#footer {
+	width: 100%;
+	height: auto;
+	display: block;
+
+	#footer_container {
+		width: 1140px;
+		border-top: 1px solid #eee;
+		margin: 25px auto 0;
+
+		text-align: center;
+		font-size: 12px;
+		color: #999;
+
+		p {
+			margin-top: 5px;
+		}
+	}
+}
+
+#main {
+	width: 100%;
+	margin: 0 auto;
+
+	#main_container {
+		width: 100%;
+		height: auto;
+		position: relative;
+
+		#main_container_center {
+			width: 1140px;
+			height: 640px;
+			margin: 0 auto;
+			position: relative;
+		}
+
+		.big_button {
+			width: 350px;
+			height: 28px;
+			line-height: 28px;
+			font-size: 21px;
+			padding: 18px 24px;
+			position: absolute;
+			border-radius: 5px;
+			display: block;
+			color: white;
+		}
+
+		.google_plus {
+			background-color: $google_color;
+			&:hover {
+				background-color: scale-color($google_color, $lightness: -20%);
+			}
+		}
+
+		.green {
+			background-color: $green_color;
+			&:hover {
+				background-color: scale-color($green_color, $lightness: -20%);
+			}
+		}
+
+		#submit_form {
+			width: 270px;
+			padding: 40px 60px;
+			border: 3px solid #777;
+			border-radius: 8px;
+			background-color: rgba(255,255,255,0.8);
+			position: relative;
+			top: 50px;
+
+			input {
+				width: 100%;
+				padding-left: 0;
+				margin-top: 10px;
+			}
+
+			select {
+				width: 60px;
+				margin-top: 10px;
+				height: 15px;
+			}
+
+			.btn {
+				border-radius: 5px;
+			}
+		}
+
+		#id_card {
+			width: 560px;
+			height: 240px;
+			padding: 60px 40px;
+			background-color: rgba(0,0,0,.8);
+			display: block;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -320px;
+			margin-top: -180px;
+			color: white;
+		}
+	}
 }
