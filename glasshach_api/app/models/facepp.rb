@@ -1,6 +1,6 @@
 class Facepp
 
-	def self.call(upload_params,api_path,is_upload)
+  def self.call(upload_params,api_path,is_upload)
     if is_upload
       connection = Faraday.new(:url => "https://apicn.faceplusplus.com/v2/") do |f|
         f.request :multipart
@@ -23,4 +23,5 @@ class Facepp
   def self.api_secret
     "i3uTsPFbeQHlLiPWv4Ak_R8IRQgTHW2o"
   end
+
 end

@@ -1,13 +1,30 @@
+<%# @result_set -%>
+
+<% @result_set.each do |result| -%>
 <article class="cover-only">
   <section>
-    <p style="font-size:50px;"><b>Ma Hao</b> <span style="font-size:25px;color:#777;">mahao@gmail.com</span></p>
+    <p style="font-size:50px;"><b><%= if result[:fname].nil?
+    "NO DATA"
+    else
+    result[:fname] + ' ' + result[:lname]
+    end-%></b> <span style="font-size:25px;color:#777;"><%= if result[:email].nil?
+    ""
+    else
+    result[:email]
+    end-%></span></p>
     <div style="float:right;width:160px;height:160px;overflow:hidden;margin-top:15px">
-      <img src="https://mirror-api-playground.appspot.com/links/obama.jpg" style="width:100%;">
+      <img src= <%= result[:img]-%> style="width:100%;">
     </div>
     <ul style="font-size:30px;text-indent:50px;margin-top:20px">
-      <li style="border:none">Age: 38</li>
-      <li style="border:none">Gender: Male</li>
-      <li style="border:none;color:#52a693;">Fudan University</li>
+      <li style="border:none">Age: <%= result[:age] -%></li>
+      <li style="border:none">Gender: <%= result[:gender] -%></li>
+      <li style="border:none;color:#52a693;"><%= if result[:from].nil?
+      ""
+      else
+      result[:from]
+      end-%></li>
     </ul>
   </section>
 </article>
+<% end -%>
+
