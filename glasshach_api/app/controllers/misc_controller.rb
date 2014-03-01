@@ -19,8 +19,8 @@ def facematch
       position["height"] = position["height"] * 1.2
       width = (position["width"] * faceImage[:width] / 100).to_i
       height = (position["height"] * faceImage[:height] / 100).to_i
-      x = (position["center"]["x"] * faceImage[:width] / 100).to_i - width / 2
-      y = (position["center"]["y"] * faceImage[:height] / 100).to_i - height / 2
+      x = (position["center"]["x"] * faceImage[:width] / 100).to_i - width * 0.7
+      y = (position["center"]["y"] * faceImage[:height] / 100).to_i - height * 0.7
       crop_params = "#{width}x#{height}+#{x}+#{y}"
       puts crop_params
       faceImage.crop(crop_params)
