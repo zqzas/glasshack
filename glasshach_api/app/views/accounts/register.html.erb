@@ -5,11 +5,11 @@
 <div id="main_container" style="background-color: #eee;">
 	<div id="main_container_center" style="width:400px">
 		<form id="submit_form" action="/misc/facecreate" method="POST" enctype="multipart/form-data">
-			<input type="text" name="lname" placeholder="姓"/>
-			<input type="text" name="fname" placeholder="名"/>
-			<input type="text" name="age" placeholder="年龄"/>
-			<input type="text" name="email" placeholder="Email地址"/>
-			<input type="text" name="from" placeholder="公司"/>
+			<input type="text" name="lname" placeholder="姓" value="<%= params[ :lname ] -%>"/>
+			<input type="text" name="fname" placeholder="名" value="<%= params[ :fname ] -%>"/>
+			<input type="text" name="age" placeholder="年龄" value="<%= params[ :age ] -%>"/>
+			<input type="text" name="email" placeholder="Email地址" value="<%= params[ :email ] -%>"/>
+			<input type="text" name="from" placeholder="公司" value="<%= params[ :from ] -%>"/>
 			<p>选择性别: <select name="gender">
 				<option value="Male">基佬</option>
 				<option value="Female">妹子</option>
