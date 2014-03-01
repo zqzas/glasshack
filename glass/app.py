@@ -76,12 +76,15 @@ class Application(object):
         self.subscriptions.init_user(user)
 
         # Call endpoint for user login
-        return self.subscriptions.call_endpoint("login", user) or ""
+	print self.subscriptions.call_endpoint("login", user)
+	return "DONE"
+        #return self.subscriptions.call_endpoint("login", user) or ""
 
     def prepare(self, host="localhost", port=8080, debug=None, secure=False, public=False):
         """
         Prepare the application server
         """
+	print host
         self.port = port
         self.host = host
         self.secure = secure
@@ -96,8 +99,10 @@ class Application(object):
 
         self.web.debug = debug or self.debug
 
+
+	
     def run(self, **kwargs):
         self.prepare(**kwargs)
-        self.web.run(port=self.port, host='0.0.0.0')
+        self.web.run(port=self.port, host=('0.0.0.0'))
 
 
