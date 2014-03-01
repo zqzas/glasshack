@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>GlasshachApi</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+  <title><%= yield :title -%></title>
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<div id="header">
+	</div>
+	<%= yield %>
+	<div id="footer">
+	</div>
 </body>
 </html>
