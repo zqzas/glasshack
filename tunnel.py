@@ -5,7 +5,7 @@ import urllib2
 
 tl_ids = []
 
-@app.web.route('/callback')
+@app.web.route('/share_callback')
 def share(user):
     lst = user.timeline.list()
     print lst
@@ -21,12 +21,12 @@ def render_id_cards(url):
     result = urllib2.urlopen(api + '?photo=' + url).read()
     session['user'].timeline.post(html=render_template(result))
 
-def subscrip(user):
+def subscript(user):
     user.request("POST", "/mirror/v1/subscriptions", data=json.dumps({
         "collection": "timeline",
         "userToken": user.token,
         "operation": "INSERT",
-        "callbackUrl": "%s/callback" % self.app.host,
+        "callbackUrl": "%s/share_callback" % self.app.host,
       }))
 
 if __name__ == '__main__':
