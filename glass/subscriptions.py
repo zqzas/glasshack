@@ -47,6 +47,8 @@ class Subscriptions(object):
         # Add view for subscription
         def handler():
             data = json.loads(request.data)
+	    print data
+
             userid = data["userToken"]
             if not userid in self.tokens:
                 raise Exception("Callback for a non-existant user")
@@ -136,6 +138,6 @@ class Subscriptions(object):
         A decorator that is used to register a function for an user action
         """
         def decorator(f):
-            self.add_subscription("timeline", "UPDATE")
+            self.add_subscription("timeline", "INSERT")
             self.add_endpoint("action.%s" % action, f)
         return decorator
