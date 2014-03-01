@@ -59,7 +59,7 @@ def login(user):
     print 'start inserting contact'
     insertContact(user)
     print 'contact added: ', appProfile
-    return "OK"
+    return redirect('/')
 
 
 
