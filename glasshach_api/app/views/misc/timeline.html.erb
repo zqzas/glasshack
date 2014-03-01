@@ -13,7 +13,7 @@
     result[:email]
     end-%></span></p>
     <div style="float:right;width:160px;height:160px;overflow:hidden;margin-top:15px">
-      <img src= <%= result[:img]-%> style="width:100%;">
+      <img src=<%= "http://" + @host_url + result[:img] -%> style="width:100%;">
     </div>
     <ul style="font-size:30px;text-indent:50px;margin-top:20px">
       <li style="border:none">Age: <%= result[:age] -%></li>

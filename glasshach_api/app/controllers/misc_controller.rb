@@ -44,7 +44,7 @@ def facematch
         :img => "/image/#{face_id}.jpg"}
       end
     end
-
+	@host_url = request.host_with_port
     render "misc/timeline", :layout => false 
   end
   
