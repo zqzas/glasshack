@@ -2,7 +2,7 @@
 	gFace
 <% end -%>
 
-<div id="main_container" style="background-image: url(<%= asset_path( "view1.jpg" ) -%>);">
+<div id="main_container" style="height: 640px;background-image: url(<%= asset_path( "view1.jpg" ) -%>);">
 	<div id="id_card">
 		<p style="font-size:50px;"><b><%= @user[:fname] + ' ' + @user[:lname] -%></b> <span style="font-size:25px;color:#777;"><%= @user[:email] -%></span></p>
 		<div style="float:right;width:160px;height:160px;overflow:hidden;margin-top:15px">

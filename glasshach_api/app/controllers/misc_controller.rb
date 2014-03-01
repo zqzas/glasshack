@@ -15,12 +15,14 @@ def facematch
       faceImage = MiniMagick::Image.open(params[ :photo ])
       puts faceImage[:width]
       puts faceImage[:height]
-      position["width"] = position["width"] * 1.2
-      position["height"] = position["height"] * 1.2
+      position["width"] = position["width"] * 1.5
+      position["height"] = position["height"] * 1.5
       width = (position["width"] * faceImage[:width] / 100).to_i
       height = (position["height"] * faceImage[:height] / 100).to_i
-      x = (position["center"]["x"] * faceImage[:width] / 100).to_i - width * 0.7
-      y = (position["center"]["y"] * faceImage[:height] / 100).to_i - height * 0.7
+      x = (position["center"]["x"] * faceImage[:width] / 100 - width * 0.5).to_i
+      y = (position["center"]["y"] * faceImage[:height] / 100 - height * 0.7).to_i
+	  x = 0 if x < 0 
+	  y = 0 if y < 0 
       crop_params = "#{width}x#{height}+#{x}+#{y}"
       puts crop_params
       faceImage.crop(crop_params)

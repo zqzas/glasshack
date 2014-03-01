@@ -1,4 +1,4 @@
-APP_PATH = ""
+APP_PATH = "/home/showcase/hackathon/glasshack/glasshach_api"
 
 worker_processes 4
 working_directory "#{APP_PATH}"
