@@ -7,7 +7,8 @@ import glass
 # Config imports
 import config
 
-import tunnel
+#import tunnel
+import urllib2
 
 app = glass.Application(
     client_id=config.GOOGLE_CLIENT_ID,
@@ -31,13 +32,12 @@ app.web.secret_key = 's2Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 @app.web.route("/")
 def index():
     return render_template("index.html", auth=False)
-
-@app.web.route("/posttestcard")
-def postTestCard():
-    print render_template("card.html")
-    session['user'].timeline.post(html=render_template("card.html"))
-    print "POST OK"
-    return "OK"
+#@app.web.route("/posttestcard")
+#def postTestCard():
+#    print render_template("card.html")
+#    session['user'].timeline.post(html=render_template("card.html"))
+#    print "POST OK"
+#    return "OK"
 
 def insertContact(user):
     print 'getting contacts list'
@@ -59,14 +59,13 @@ def login(user):
     #postTestCard()
     userTokens = user.tokens
     print 'start inserting contact'
-    insertContact(user)
+    # insertContact(user)
     print 'contact added: ', appProfile
-    return redirect('/')
-
+    # return redirect('/')
 
 
 
 if __name__ == '__main__':
     print "Starting application at %s:%i" % (config.HOST, config.PORT)
-    app.run(port=config.PORT, host=config.HOST)
+    app.run(port=config.PORT, host=config.HOST, debug=True)
     
