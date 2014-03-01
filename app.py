@@ -22,10 +22,20 @@ app.web.secret_key = 's2Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 def index():
     return render_template("index.html", auth=False)
 
+@app.web.route("/posttestcard")
+def postTestCard():
+    print render_template("card.html")
+    session['user'].timeline.post(html=render_template("card.html"))
+    print "POST OK"
+    return "OK"
+
+
 @app.subscriptions.login
 def login(user):
     print "google user: %s" % (user.token)
     session['token'] = user.token
+    session['user'] = user
+    postTestCard()
     return "OK"
 
 if __name__ == '__main__':
