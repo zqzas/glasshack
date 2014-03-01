@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :gender
       t.string :email
       t.string :face_id
+      t.string :from
 
       t.timestamps
     end
