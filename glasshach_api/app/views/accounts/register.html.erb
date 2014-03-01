@@ -2,7 +2,7 @@
 	gFace - 注册
 <% end -%>
 
-<div id="main_container" style="background-color: #eee;">
+<div id="main_container" style="background-image: url(<%= asset_path( "view1.jpg" ) -%>);">
 	<div id="main_container_center" style="width:400px">
 		<form id="submit_form" action="/misc/facecreate" method="POST" enctype="multipart/form-data">
 			<input type="text" name="lname" placeholder="姓" value="<%= params[ :lname ] -%>"/>

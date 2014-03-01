@@ -11,7 +11,7 @@
  *= require flat-ui
  */
 
-$main_color: #118888;
+$main_color: #009999;
 $google_color: #6199DF;
 $green_color: #1abc9c;
 
@@ -58,6 +58,10 @@ li {list-style-type: none;}
 			font-size: 30px;
 			font-weight: 800;
 			float: left;
+
+			&:hover {
+				color: #00aaaa;
+			}
 		}
 
 		#contact_us {
@@ -75,6 +79,9 @@ li {list-style-type: none;}
 	width: 100%;
 	height: auto;
 	display: block;
+	position: absolute;
+	margin-top: -90px;
+	text-shadow: 1px 1px 0px #000;
 
 	#footer_container {
 		width: 1140px;
@@ -83,7 +90,7 @@ li {list-style-type: none;}
 
 		text-align: center;
 		font-size: 12px;
-		color: #999;
+		color: white;
 
 		p {
 			margin-top: 5px;
@@ -100,6 +107,10 @@ li {list-style-type: none;}
 		height: auto;
 		position: relative;
 
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: 0px -120px;
+
 		#main_container_center {
 			width: 1140px;
 			height: 640px;
@@ -108,7 +119,7 @@ li {list-style-type: none;}
 		}
 
 		.big_button {
-			width: 350px;
+			width: 300px;
 			height: 28px;
 			line-height: 28px;
 			font-size: 21px;
