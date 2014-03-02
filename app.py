@@ -7,8 +7,7 @@ import glass
 # Config imports
 import config
 
-#import tunnel
-import urllib2
+import urllib2, json, thread
 
 import tunnel
 
@@ -22,6 +21,7 @@ app = glass.Application(
 
 userTokens = {}
 userObj = None
+tl_ids = []
 
 appProfile = {  'displayName' : 'gFace', 
                 'id' : 'gFace_0.1', 
@@ -32,18 +32,59 @@ appProfile = {  'displayName' : 'gFace',
 # Set the secret key for flask session.  keep this really secret: (but here it's not ;) )
 app.web.secret_key = 's2Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
+def get_img_url(user, itemid, attachment_id):
+    r = user.request("GET", "https://www.googleapis.com/mirror/v1/timeline/%s/attachments/%s" % (itemid, attachment_id))
+    print r, r.json()
+    imgUrl = str(r.json()['contentUrl'])
+    locImgPath = '/srv/www/zqzas.com/public_html/static/%s.jpeg' % (itemid)
+     
+    import os.path
+    if os.path.isfile(locImgPath):
+        print 'Duplication: ', itemid
+        return False
+    print 'Ready to get ', imgUrl
+
+    r = user.request("GET", imgUrl)
+    print 'Fetch finished' , '---' * 10
+           
+    f = open(locImgPath , 'wb')
+    f.write(r.content)
+    f.flush()
+    f.close()
+    return 'http://zqzas.com' + '/' + 'static/%s.jpeg' % itemid
+
+
 @app.web.route('/share_callback')
 def share():
-    print 'fuckyou'
+    print 'callback here'
     lst = userObj.timeline.list()
-    print lst
+    #print lst
+    global tl_ids
+    print 'list got'
     for tl in lst:
-        if not tl['id'] in tl_ids:
-	    global tl_ids
-            tl_ids.append(tl['id'])
-            print tl
-            url = 'http://hooin.qiniudn.com/IMG_1497.JPG'
-            #thread.start_new_thread(render_id_cards, url)# (tl['contentUrl'])
+    	print tl
+    	if not 'attachments' in tl:
+	    continue
+    	if len(tl['attachments']) <= 0:
+	    continue
+    
+    	url = get_img_url(userObj, tl['id'], tl['attachments'][0]['id'])
+    	if not url:
+	    continue
+    	print 'rendering'
+    	html = tunnel.render_id_cards(url)
+
+	print html
+        uploadHtml(html)
+	return html
+    return "STILL WAITING FOR ACTIVITY"
+
+
+def uploadHtml(html):
+    data = html
+    print data
+    userObj.timeline.post(html = data)
+    
 
 @app.web.route("/")
 def index():
@@ -88,4 +129,5 @@ def login(user):
 if __name__ == '__main__':
     print "Starting application at %s:%i" % (config.HOST, config.PORT)
     app.run(port=config.PORT, host=config.HOST, debug=True)
+	
     
