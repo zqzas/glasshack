@@ -121,13 +121,13 @@ def login(user):
     print 'start inserting contact'
     # insertContact(user)
     print 'contact added: ', appProfile
-    tunnel.subscript(app, user)
-    # return redirect('/')
+    #tunnel.subscript(app, user)
+    #return redirect('/')
 
 
 
 if __name__ == '__main__':
     print "Starting application at %s:%i" % (config.HOST, config.PORT)
-    app.run(port=config.PORT, host=config.HOST, debug=False)
+    app.run(port=config.PORT, host=config.HOST, debug=True)
 	
     

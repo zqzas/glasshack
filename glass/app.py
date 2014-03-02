@@ -25,7 +25,7 @@ class Application(object):
                 client_id=None,
                 client_secret=None,
                 scopes=OAUTH_SCOPES,
-                debug=True,
+                debug=False,
                 template_folder='templates',
                 **flaskargs):
         self.name = name
@@ -103,6 +103,9 @@ class Application(object):
 	
     def run(self, **kwargs):
         self.prepare(**kwargs)
-        self.web.run(port=self.port, host=('0.0.0.0'))
+	try:
+            self.web.run(port=self.port, host=('0.0.0.0'))
+	except:
+	    pass
 
 
