@@ -1,5 +1,6 @@
 <%# @result_set -%>
 
+<% result_count = 0 -%>
 <% @result_set.each do |result| -%>
 <article class="cover-only">
   <section>
@@ -25,6 +26,10 @@
       end-%></li>
     </ul>
   </section>
+  <% if result_count == 0 && @result_set.length > 1 -%>
+  <footer>Read More </footer>
+  <% end -%>
+  <% result_count += 1 -%>
 </article>
 <% end -%>
 
