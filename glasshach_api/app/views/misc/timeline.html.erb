@@ -5,7 +5,7 @@
 <article class="cover-only">
   <section>
     <p style="font-size:50px;"><b><%= if result[:fname].nil?
-    "NO DATA"
+    "UNKNOWN"
     else
     result[:fname] + ' ' + result[:lname]
     end-%></b> <span style="font-size:25px;color:#777;"><%= if result[:email].nil?
@@ -13,7 +13,7 @@
     else
     result[:email]
     end-%></span></p>
-    <div style="float:right;width:160px;height:160px;overflow:hidden;margin-top:15px">
+    <div style="float:right;width:170px;height:170px;overflow:hidden;margin-top:15px">
       <img src=<%= "http://" + @host_url + result[:img] -%> style="width:100%;">
     </div>
     <ul style="font-size:30px;text-indent:50px;margin-top:20px">
